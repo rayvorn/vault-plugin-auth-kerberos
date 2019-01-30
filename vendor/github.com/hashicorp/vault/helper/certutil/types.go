@@ -17,7 +17,6 @@ import (
 	"crypto/x509"
 	"encoding/pem"
 	"fmt"
-	"math/big"
 	"strings"
 
 	"github.com/hashicorp/errwrap"
@@ -43,7 +42,7 @@ const (
 )
 
 // TLSUsage controls whether the intended usage of a *tls.Config
-// returned from ParsedCertBundle.GetTLSConfig is for server use,
+// returned from ParsedCertBundle.getTLSConfig is for server use,
 // client use, or both, which affects which values are set
 type TLSUsage int
 
@@ -98,7 +97,6 @@ type ParsedCertBundle struct {
 	CertificateBytes []byte
 	Certificate      *x509.Certificate
 	CAChain          []*CertBlock
-	SerialNumber     *big.Int
 }
 
 // CSRBundle contains a key type, a PEM-encoded private key,
@@ -223,8 +221,6 @@ func (c *CertBundle) ToParsedCertBundle() (*ParsedCertBundle, error) {
 		if err != nil {
 			return nil, errutil.UserError{Err: fmt.Sprintf("Error encountered parsing certificate bytes from raw bundle via issuing CA: %v", err)}
 		}
-
-		result.SerialNumber = result.Certificate.SerialNumber
 
 		certBlock := &CertBlock{
 			Bytes:       pemBlock.Bytes,
@@ -523,7 +519,7 @@ func (p *ParsedCSRBundle) SetParsedPrivateKey(privateKey crypto.Signer, privateK
 	p.PrivateKeyBytes = privateKeyBytes
 }
 
-// GetTLSConfig returns a TLS config generally suitable for client
+// getTLSConfig returns a TLS config generally suitable for client
 // authentication. The returned TLS config can be modified slightly
 // to be made suitable for a server requiring client authentication;
 // specifically, you should set the value of ClientAuth in the returned
