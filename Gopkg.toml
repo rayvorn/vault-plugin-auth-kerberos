@@ -43,7 +43,7 @@
 
 [[constraint]]
   name = "github.com/hashicorp/vault"
-  version = "1.0.2"
+  branch = "allowed-response-headers"
 
 [[constraint]]
   name = "gopkg.in/jcmturner/gokrb5.v5"

@@ -173,7 +173,8 @@
   revision = "65a6292f0157eff210d03ed1bf6c59b190b8b906"
 
 [[projects]]
-  digest = "1:7a50014694796da1a730ccd5862bdeb4c6dbdc2e2e269d2c80feff8f18e32302"
+  branch = "allowed-response-headers"
+  digest = "1:8f073f1917a14da211e765e8c4e21e4a27e71c678ebf6b46f7bad38f7e40cfef"
   name = "github.com/hashicorp/vault"
   packages = [
     "api",
@@ -204,8 +205,7 @@
     "version",
   ]
   pruneopts = "UT"
-  revision = "37a1dc9c477c1c68c022d2084550f25bf20cac33"
-  version = "v1.0.2"
+  revision = "1c44c49bafeef0916a08543fe42151293dbdbfcd"
 
 [[projects]]
   branch = "master"
